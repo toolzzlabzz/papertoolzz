@@ -36,6 +36,7 @@ interface SpawnTarget {
   command: string;
   args: string[];
   cwd?: string;
+  shell?: boolean;
   cleanup?: () => Promise<void>;
 }
 
@@ -1290,8 +1291,7 @@ async function resolveSpawnTarget(
   }
 
   if (/\.(cmd|bat)$/i.test(executable)) {
-    // Node spawn handles .cmd/.bat directly on Windows via CreateProcess.
-    return { command: executable, args };
+    return { command, args, shell: true };
   }
 
   return { command: executable, args };
@@ -2115,7 +2115,7 @@ export async function runChildProcess(
           cwd: target.cwd ?? opts.cwd,
           env: mergedEnv,
           detached: process.platform !== "win32",
-          shell: false,
+          shell: target.shell ?? false,
           stdio: [opts.stdin != null ? "pipe" : "ignore", "pipe", "pipe"],
         }) as ChildProcessWithEvents;
         const startedAt = new Date().toISOString();
