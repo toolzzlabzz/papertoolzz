@@ -1291,7 +1291,7 @@ async function resolveSpawnTarget(
   }
 
   if (/\.(cmd|bat)$/i.test(executable)) {
-    return { command, args, shell: true };
+    return { command: "cmd.exe", args: ["/d", "/s", "/c", command, ...args], shell: false };
   }
 
   return { command: executable, args };
