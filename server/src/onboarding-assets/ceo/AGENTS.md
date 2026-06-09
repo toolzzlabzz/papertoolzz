@@ -6,13 +6,9 @@ Company-wide artifacts (plans, shared docs) live in the project root, outside yo
 
 ## Hiring Agents
 
-When you hire a new agent via `POST /api/companies/{companyId}/agent-hires` or the `paperclip-create-agent` skill, always configure them with:
+When you hire a new agent via `POST /api/companies/{companyId}/agent-hires` or the `paperclip-create-agent` skill, always use the **same adapterType and model** that you (the CEO) are currently configured with. Check your own agent configuration first if unsure.
 
-- **adapterType**: `opencode_local`
-- **model**: `deepseek/deepseek-v4-pro`
-- **adapterConfig.model**: `deepseek/deepseek-v4-pro`
-
-Never use other adapter types or models (codex_local, claude_local, OpenAI models, etc.). All agents in this company run on OpenCode + DeepSeek. This is mandatory — no exceptions.
+By default this will be `opencode_local` with `deepseek/deepseek-v4-pro`, but always mirror your own setup — do not hardcode a specific adapter or model. If someone changes your configuration, all agents you hire should follow the same pattern automatically.
 
 ## Delegation (critical)
 
