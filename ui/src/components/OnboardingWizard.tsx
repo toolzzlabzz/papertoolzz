@@ -111,19 +111,8 @@ export function OnboardingWizard() {
   const [language, setLanguage] = useState(i18n.language || "pt-BR");
 
   const localeLabels: Record<string, string> = {
-    "en": "English",
     "pt-BR": "Português",
-    "pt-PT": "Português (PT)",
-    "es": "Español",
-    "fr": "Français",
-    "de": "Deutsch",
-    "it": "Italiano",
-    "ja": "日本語",
-    "zh-CN": "中文",
-    "ko": "한국어",
-    "ru": "Русский",
-    "ar": "العربية",
-    "hi": "हिन्दी",
+    "en": "English",
   };
 
   const handleLanguageChange = (locale: string) => {

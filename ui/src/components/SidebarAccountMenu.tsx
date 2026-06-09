@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   BookOpen,
+  Globe,
   LogOut,
   type LucideIcon,
   Moon,
@@ -18,6 +19,7 @@ import { useTheme } from "../context/ThemeContext";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "../lib/utils";
+import { i18n, supportedLocales } from "../i18n";
 
 const PROFILE_SETTINGS_PATH = "/company/settings/instance/profile";
 const DOCS_URL = "https://docs.paperclip.ing/";
@@ -132,6 +134,13 @@ export function SidebarAccountMenu({
   const initials = deriveInitials(displayName);
   const profileHref = `/u/${deriveUserSlug(session?.user.name, session?.user.email, session?.user.id)}`;
 
+  const localeLabels: Record<string, string> = {
+    "pt-BR": "Português",
+    "en": "English",
+  };
+
+  const currentLocale = i18n.language || "pt-BR";
+
   function closeNavigationChrome() {
     setOpen(false);
     if (isMobile) setSidebarOpen(false);
@@ -214,6 +223,21 @@ export function SidebarAccountMenu({
                   setOpen(false);
                 }}
               />
+              <div className="px-3 py-2">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1.5">
+                  <Globe className="size-3.5" />
+                  Language
+                </div>
+                <select
+                  className="w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-ring"
+                  value={currentLocale}
+                  onChange={(e) => void i18n.changeLanguage(e.target.value)}
+                >
+                  {Object.entries(localeLabels).map(([code, label]) => (
+                    <option key={code} value={code}>{label}</option>
+                  ))}
+                </select>
+              </div>
               {deploymentMode === "authenticated" ? (
                 <button
                   type="button"
