@@ -6,7 +6,7 @@ import { DEFAULT_LOCALE, i18nextResources, supportedLocales } from "./locales";
 const i18nextOptions: InitOptions = {
   resources: i18nextResources,
   lng: DEFAULT_LOCALE,
-  fallbackLng: DEFAULT_LOCALE,
+  fallbackLng: "en",
   supportedLngs: supportedLocales,
   defaultNS: "translation",
   interpolation: { escapeValue: false },

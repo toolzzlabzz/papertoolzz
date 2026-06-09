@@ -131,7 +131,8 @@
     "none": "Nenhum",
     "yes": "Sim",
     "no": "Não",
-    "getStarted": "Começar"
+    "getStarted": "Começar",
+    "detail": "Detalhes"
   },
   "dashboard": {
     "getStarted": "Começar",
@@ -452,5 +453,63 @@
     "agents": "Agentes",
     "inbox": "Caixa de entrada",
     "openSidebar": "Abrir menu"
+  },
+  "sidebarCompanyMenu": {
+    "selectWorkspace": "Selecionar workspace",
+    "switchWorkspace": "Trocar workspace",
+    "noWorkspaces": "Nenhum workspace",
+    "addCompany": "Adicionar empresa...",
+    "invitePeople": "Convidar pessoas",
+    "companySettings": "Configurações da empresa",
+    "openWorkspaceSwitcher": "Abrir seletor de workspace",
+    "openSwitcher": "Abrir seletor de {{name}}"
+  },
+  "environments": {
+    "title": "Ambientes",
+    "selectCompany": "Selecione uma empresa para ver ambientes.",
+    "noEnvironments": "Nenhum ambiente configurado.",
+    "addEnvironment": "Adicionar ambiente",
+    "name": "Nome",
+    "type": "Tipo",
+    "local": "Local",
+    "sandbox": "Sandbox",
+    "ssh": "SSH",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "createEnvironment": "Criar ambiente",
+    "editEnvironment": "Editar ambiente"
+  },
+  "invites": {
+    "sendInvite": "Enviar convite",
+    "email": "E-mail",
+    "role": "Função",
+    "sent": "Enviado",
+    "expires": "Expira",
+    "status": "Status",
+    "actions": "Ações",
+    "pending": "Pendente",
+    "accepted": "Aceito",
+    "expired": "Expirado",
+    "revoke": "Revogar",
+    "noInvites": "Nenhum convite enviado.",
+    "revokeConfirm": "Tem certeza que deseja revogar este convite?"
+  },
+  "propertiesPanel": {
+    "title": "Propriedades"
+  },
+  "skills": {
+    "title": "Habilidades",
+    "installed": "Instaladas",
+    "catalog": "Catálogo",
+    "install": "Instalar",
+    "uninstall": "Desinstalar",
+    "noInstalled": "Nenhuma habilidade instalada.",
+    "noCatalog": "Nenhuma habilidade no catálogo.",
+    "search": "Buscar habilidades...",
+    "key": "Chave",
+    "mode": "Modo",
+    "source": "Origem",
+    "trust": "Confiança"
   }
 }
