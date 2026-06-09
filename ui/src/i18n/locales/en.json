@@ -5,5 +5,54 @@
       "description": "Get started by creating a company.",
       "newCompany": "New Company"
     }
+  },
+  "onboarding": {
+    "step1": {
+      "title": "Name your company",
+      "description": "This is the organization your agents will work for.",
+      "companyName": "Company name",
+      "companyNamePlaceholder": "Acme Corp",
+      "mission": "Mission / goal (optional)",
+      "missionPlaceholder": "What is this company trying to achieve?",
+      "language": "Language",
+      "next": "Next"
+    },
+    "step2": {
+      "title": "Create your first agent",
+      "description": "Choose how this agent will run tasks.",
+      "agentName": "Agent name",
+      "agentNamePlaceholder": "CEO",
+      "recommended": "Recommended",
+      "moreAdapters": "More adapters",
+      "testNow": "Test Now",
+      "back": "Back",
+      "next": "Next"
+    },
+    "step3": {
+      "title": "Set company goals",
+      "description": "Define what your company should achieve.",
+      "goal": "Goal",
+      "goalPlaceholder": "What should this company accomplish?",
+      "back": "Back",
+      "next": "Next"
+    },
+    "step4": {
+      "title": "Ready to launch",
+      "description": "Your company and CEO agent are ready.",
+      "company": "Company",
+      "agent": "Agent",
+      "model": "Model",
+      "back": "Back",
+      "launch": "Launch"
+    }
+  },
+  "common": {
+    "back": "Back",
+    "next": "Next",
+    "cancel": "Cancel",
+    "save": "Save",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry"
   }
 }

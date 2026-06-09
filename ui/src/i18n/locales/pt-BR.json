@@ -5,5 +5,54 @@
       "description": "Comece criando uma empresa.",
       "newCompany": "Nova empresa"
     }
+  },
+  "onboarding": {
+    "step1": {
+      "title": "Dê um nome à sua empresa",
+      "description": "Esta é a organização onde seus agentes trabalharão.",
+      "companyName": "Nome da empresa",
+      "companyNamePlaceholder": "Acme Corp",
+      "mission": "Missão / objetivo (opcional)",
+      "missionPlaceholder": "O que esta empresa quer alcançar?",
+      "language": "Idioma",
+      "next": "Avançar"
+    },
+    "step2": {
+      "title": "Crie seu primeiro agente",
+      "description": "Escolha como este agente irá executar tarefas.",
+      "agentName": "Nome do agente",
+      "agentNamePlaceholder": "CEO",
+      "recommended": "Recomendado",
+      "moreAdapters": "Mais opções",
+      "testNow": "Testar",
+      "back": "Voltar",
+      "next": "Avançar"
+    },
+    "step3": {
+      "title": "Defina os objetivos",
+      "description": "Determine o que sua empresa deve alcançar.",
+      "goal": "Objetivo",
+      "goalPlaceholder": "O que esta empresa deve realizar?",
+      "back": "Voltar",
+      "next": "Avançar"
+    },
+    "step4": {
+      "title": "Pronto para começar",
+      "description": "Sua empresa e agente CEO estão prontos.",
+      "company": "Empresa",
+      "agent": "Agente",
+      "model": "Modelo",
+      "back": "Voltar",
+      "launch": "Lançar"
+    }
+  },
+  "common": {
+    "back": "Voltar",
+    "next": "Avançar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "loading": "Carregando...",
+    "error": "Algo deu errado",
+    "retry": "Tentar novamente"
   }
 }

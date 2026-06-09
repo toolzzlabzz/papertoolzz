@@ -44,6 +44,7 @@ import {
 import { DEFAULT_CURSOR_LOCAL_MODEL } from "@paperclipai/adapter-cursor-local";
 import { DEFAULT_GEMINI_LOCAL_MODEL } from "@paperclipai/adapter-gemini-local";
 import { DEFAULT_OPENCODE_LOCAL_MODEL, isValidOpenCodeModelId } from "@paperclipai/adapter-opencode-local";
+import { i18n, supportedLocales } from "../i18n";
 import { resolveRouteOnboardingOptions } from "../lib/onboarding-route";
 import { AsciiArtAnimation } from "./AsciiArtAnimation";
 import {
@@ -107,6 +108,28 @@ export function OnboardingWizard() {
   // Step 1
   const [companyName, setCompanyName] = useState("");
   const [companyGoal, setCompanyGoal] = useState("");
+  const [language, setLanguage] = useState(i18n.language || "pt-BR");
+
+  const localeLabels: Record<string, string> = {
+    "en": "English",
+    "pt-BR": "Português",
+    "pt-PT": "Português (PT)",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "ja": "日本語",
+    "zh-CN": "中文",
+    "ko": "한국어",
+    "ru": "Русский",
+    "ar": "العربية",
+    "hi": "हिन्दी",
+  };
+
+  const handleLanguageChange = (locale: string) => {
+    setLanguage(locale);
+    void i18n.changeLanguage(locale);
+  };
 
   // Step 2
   const [agentName, setAgentName] = useState("CEO");
@@ -687,6 +710,24 @@ export function OnboardingWizard() {
                       onChange={(e) => setCompanyName(e.target.value)}
                       autoFocus
                     />
+                  </div>
+                  <div className="group">
+                    <label className="text-xs mb-1 block text-muted-foreground">
+                      {language === "pt-BR" ? "Idioma" : "Language"}
+                    </label>
+                    <select
+                      className="w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-ring"
+                      value={language}
+                      onChange={(e) => handleLanguageChange(e.target.value)}
+                    >
+                      {supportedLocales
+                        .filter((l: string) => localeLabels[l])
+                        .map((l: string) => (
+                          <option key={l} value={l}>
+                            {localeLabels[l]}
+                          </option>
+                        ))}
+                    </select>
                   </div>
                   <div className="group">
                     <label

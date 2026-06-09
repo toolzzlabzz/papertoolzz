@@ -23,4 +23,4 @@ export function t(key: string, options: TOptions = {}) {
 }
 
 export const useTranslation = useReactI18nextTranslation;
-export { i18n };
+export { i18n, supportedLocales };
