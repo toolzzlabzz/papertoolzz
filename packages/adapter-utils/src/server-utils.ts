@@ -114,6 +114,8 @@ export function resolvePaperclipInstanceRootForAdapter(input: {
 export const DEFAULT_PAPERCLIP_AGENT_PROMPT_TEMPLATE = [
   "You are agent {{agent.id}} ({{agent.name}}). Continue your Paperclip work.",
   "",
+  "Language: Always communicate in Brazilian Portuguese (pt-BR). Write all comments, issue updates, documents, and interactions in Portuguese. Only use English when interacting with code, technical identifiers, or when explicitly requested by the user.",
+  "",
   "Execution contract:",
   "- Start actionable work in this heartbeat; do not stop at a plan unless the issue asks for planning.",
   "- Leave durable progress in comments, documents, or work products, then update the issue to a clear final disposition before ending the heartbeat.",
