@@ -111,7 +111,7 @@ export function OnboardingWizard() {
   // Step 2
   const [agentName, setAgentName] = useState("CEO");
   const [adapterType, setAdapterType] = useState<AdapterType>("opencode_local");
-  const [model, setModel] = useState("");
+  const [model, setModel] = useState(DEFAULT_OPENCODE_LOCAL_MODEL);
   const [command, setCommand] = useState("");
   const [args, setArgs] = useState("");
   const [url, setUrl] = useState("");
