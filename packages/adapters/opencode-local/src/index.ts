@@ -59,6 +59,13 @@ export const models: Array<{ id: string; label: string }> = [
   { id: "openai/gpt-5.2", label: "openai/gpt-5.2" },
   { id: "openai/gpt-5.1-codex-max", label: "openai/gpt-5.1-codex-max" },
   { id: "openai/gpt-5.1-codex-mini", label: "openai/gpt-5.1-codex-mini" },
+  { id: "deepseek/deepseek-chat", label: "deepseek/deepseek-chat" },
+  { id: "deepseek/deepseek-reasoner", label: "deepseek/deepseek-reasoner" },
+  { id: "deepseek/deepseek-v4-flash", label: "deepseek/deepseek-v4-flash" },
+  { id: "deepseek/deepseek-v4-pro", label: "deepseek/deepseek-v4-pro" },
+  { id: "anthropic/claude-sonnet-4-5", label: "anthropic/claude-sonnet-4-5" },
+  { id: "anthropic/claude-opus-4-5", label: "anthropic/claude-opus-4-5" },
+  { id: "anthropic/claude-haiku-4-5", label: "anthropic/claude-haiku-4-5" },
 ];
 
 export const modelProfiles: AdapterModelProfileDefinition[] = [
@@ -69,6 +76,26 @@ export const modelProfiles: AdapterModelProfileDefinition[] = [
     adapterConfig: {
       model: "openai/gpt-5.1-codex-mini",
       variant: "low",
+    },
+    source: "adapter_default",
+  },
+  {
+    key: "cheap",
+    label: "DeepSeek Cheap",
+    description: "DeepSeek V4 Flash — fast and affordable for non-critical agents.",
+    adapterConfig: {
+      model: "deepseek/deepseek-v4-flash",
+      variant: "low",
+    },
+    source: "adapter_default",
+  },
+  {
+    key: "cheap",
+    label: "DeepSeek Pro",
+    description: "DeepSeek V4 Pro — best quality for CEOs and critical agents.",
+    adapterConfig: {
+      model: "deepseek/deepseek-v4-pro",
+      variant: "max",
     },
     source: "adapter_default",
   },
