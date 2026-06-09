@@ -19,6 +19,7 @@ import {
   storybookDashboardSummary,
   storybookIssues,
   storybookLiveRuns,
+  storybookOrgTree,
   storybookProjects,
   storybookSecretAccessEvents,
   storybookSecretBindings,
@@ -241,6 +242,9 @@ function installStorybookApiFixtures() {
       }
       if (resource === "live-runs") {
         return Response.json(companyId === "company-storybook" ? storybookLiveRuns : []);
+      }
+      if (resource === "org") {
+        return Response.json(companyId === "company-storybook" ? storybookOrgTree : []);
       }
       if (resource === "inbox-dismissals") {
         return Response.json([]);

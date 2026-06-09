@@ -22,6 +22,7 @@ import type {
   WorkspaceRuntimeService,
 } from "@paperclipai/shared";
 import type { RunForIssue } from "@/api/activity";
+import type { OrgNode } from "@/api/agents";
 import type { LiveRunForIssue } from "@/api/heartbeats";
 
 const now = new Date("2026-04-20T12:00:00.000Z");
@@ -191,6 +192,33 @@ export const storybookAgents: Agent[] = [
 ];
 
 export const storybookAgentMap = new Map(storybookAgents.map((agent) => [agent.id, agent]));
+
+// Org hierarchy for the dashboard agent-network panel. Anchored on the three
+// real fixture agents and fleshed out with a second reporting line so the
+// visualization reads like a real company tree (mixed statuses + a live run).
+export const storybookOrgTree: OrgNode[] = [
+  {
+    id: "agent-cto",
+    name: "CTO",
+    role: "cto",
+    status: "active",
+    reports: [
+      { id: "agent-codex", name: "CodexCoder", role: "engineer", status: "running", reports: [] },
+      { id: "agent-qa", name: "QAChecker", role: "qa", status: "idle", reports: [] },
+      { id: "agent-research", name: "ResearchBot", role: "researcher", status: "paused", reports: [] },
+    ],
+  },
+  {
+    id: "agent-coo",
+    name: "COO",
+    role: "operations",
+    status: "active",
+    reports: [
+      { id: "agent-ops", name: "OpsAgent", role: "operations", status: "error", reports: [] },
+      { id: "agent-finance", name: "FinanceBot", role: "finance", status: "active", reports: [] },
+    ],
+  },
+];
 
 export const storybookIssueLabels: IssueLabel[] = [
   {

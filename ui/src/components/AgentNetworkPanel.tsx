@@ -12,8 +12,8 @@ import { Activity, Network } from "lucide-react";
 import { t } from "@/i18n";
 
 // ── Layout constants (compact, banner-friendly) ─────────────────────────
-const NODE_W = 124;
-const NODE_H = 56;
+const NODE_W = 152;
+const NODE_H = 58;
 const GAP_X = 26;
 const GAP_Y = 52;
 const PADDING = 28;
