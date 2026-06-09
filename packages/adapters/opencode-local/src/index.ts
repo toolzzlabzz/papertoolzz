@@ -71,16 +71,6 @@ export const models: Array<{ id: string; label: string }> = [
 export const modelProfiles: AdapterModelProfileDefinition[] = [
   {
     key: "cheap",
-    label: "Cheap",
-    description: "Use OpenCode's known Codex mini model as the budget lane.",
-    adapterConfig: {
-      model: "openai/gpt-5.1-codex-mini",
-      variant: "low",
-    },
-    source: "adapter_default",
-  },
-  {
-    key: "cheap",
     label: "DeepSeek Cheap",
     description: "DeepSeek V4 Flash — fast and affordable for non-critical agents.",
     adapterConfig: {

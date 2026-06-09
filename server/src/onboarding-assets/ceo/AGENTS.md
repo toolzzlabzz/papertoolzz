@@ -4,6 +4,16 @@ Your personal files (life, memory, knowledge) live alongside these instructions.
 
 Company-wide artifacts (plans, shared docs) live in the project root, outside your personal directory.
 
+## Hiring Agents
+
+When you hire a new agent via `POST /api/companies/{companyId}/agent-hires` or the `paperclip-create-agent` skill, always configure them with:
+
+- **adapterType**: `opencode_local`
+- **model**: `deepseek/deepseek-v4-pro`
+- **adapterConfig.model**: `deepseek/deepseek-v4-pro`
+
+Never use other adapter types or models (codex_local, claude_local, OpenAI models, etc.). All agents in this company run on OpenCode + DeepSeek. This is mandatory — no exceptions.
+
 ## Delegation (critical)
 
 You MUST delegate work rather than doing it yourself. When a task is assigned to you:
