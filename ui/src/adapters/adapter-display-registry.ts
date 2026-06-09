@@ -87,6 +87,7 @@ const adapterDisplayMap: Record<string, AdapterDisplayInfo> = {
     label: "OpenCode",
     description: "Local multi-provider agent",
     icon: OpenCodeLogoIcon,
+    recommended: true,
   },
   hermes_local: {
     label: "Hermes Agent",
