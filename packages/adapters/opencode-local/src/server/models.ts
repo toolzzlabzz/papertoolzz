@@ -6,7 +6,7 @@ import {
   ensurePathInEnv,
   runChildProcess,
 } from "@paperclipai/adapter-utils/server-utils";
-import { isValidOpenCodeModelId } from "../index.js";
+import { isValidOpenCodeModelId, models as staticModels } from "../index.js";
 
 const MODELS_CACHE_TTL_MS = 60_000;
 const MODELS_DISCOVERY_TIMEOUT_MS = 20_000;
@@ -205,10 +205,18 @@ export async function ensureOpenCodeModelConfiguredAndAvailable(input: {
 
 export async function listOpenCodeModels(): Promise<AdapterModel[]> {
   try {
-    return await discoverOpenCodeModelsCached();
+    const discovered = await discoverOpenCodeModelsCached();
+    const merged = mergeDiscoveredWithStatic(discovered);
+    return sortModels(merged);
   } catch {
-    return [];
+    return staticModels;
   }
+}
+
+function mergeDiscoveredWithStatic(discovered: AdapterModel[]): AdapterModel[] {
+  const seen = new Set(discovered.map((m) => m.id));
+  const extra = staticModels.filter((m) => !seen.has(m.id));
+  return [...discovered, ...extra];
 }
 
 export function resetOpenCodeModelsCacheForTests() {
