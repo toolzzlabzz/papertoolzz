@@ -31,6 +31,7 @@ import { Button } from "@/components/ui/button";
 import { PluginSlotOutlet } from "@/plugins/slots";
 import { PluginLauncherOutlet } from "@/plugins/launchers";
 import { SidebarCompanyMenu } from "./SidebarCompanyMenu";
+import { t } from "../i18n";
 
 export function Sidebar() {
   const { openNewIssue } = useDialogActions();
@@ -87,12 +88,12 @@ export function Sidebar() {
             className="flex items-center gap-2.5 px-3 py-2 pointer-coarse:py-1.5 text-[13px] font-medium text-foreground/80 hover:bg-accent/50 hover:text-foreground transition-colors"
           >
             <SquarePen className="h-4 w-4 shrink-0" />
-            <span className="truncate">New Task</span>
+            <span className="truncate">{t("common.create")} Task</span>
           </button>
-          <SidebarNavItem to="/dashboard" label="Dashboard" icon={LayoutDashboard} liveCount={liveRunCount} />
+          <SidebarNavItem to="/dashboard" label={t("sidebar.dashboard")} icon={LayoutDashboard} liveCount={liveRunCount} />
           <SidebarNavItem
             to="/inbox"
-            label="Inbox"
+            label={t("sidebar.inbox")}
             icon={Inbox}
             badge={inboxBadge.inbox}
             badgeTone={inboxBadge.failedRuns > 0 ? "danger" : "default"}
@@ -100,16 +101,16 @@ export function Sidebar() {
           />
         </div>
 
-        <SidebarSection label="Work">
-          <SidebarNavItem to="/issues" label="Tasks" icon={CircleDot} />
-          <SidebarNavItem to="/routines" label="Routines" icon={Repeat} />
-          <SidebarNavItem to="/goals" label="Goals" icon={Target} />
-          <SidebarNavItem to="/artifacts" label="Artifacts" icon={Package} />
+        <SidebarSection label={t("sidebar.work")}>
+          <SidebarNavItem to="/issues" label={t("sidebar.issues")} icon={CircleDot} />
+          <SidebarNavItem to="/routines" label={t("sidebar.routines")} icon={Repeat} />
+          <SidebarNavItem to="/goals" label={t("sidebar.goals")} icon={Target} />
+          <SidebarNavItem to="/artifacts" label={t("sidebar.artifacts")} icon={Package} />
           {showWorkspacesLink ? (
             <SidebarNavItem to="/workspaces" label="Workspaces" icon={GitBranch} />
           ) : null}
           {streamlined ? (
-            <SidebarNavItem to="/projects" label="Projects" icon={FolderOpen} />
+            <SidebarNavItem to="/projects" label={t("sidebar.projects")} icon={FolderOpen} />
           ) : null}
           <PluginSlotOutlet
             slotTypes={["sidebar"]}
@@ -131,12 +132,12 @@ export function Sidebar() {
 
         <SidebarAgents streamlined={streamlined} />
 
-        <SidebarSection label="Company">
+        <SidebarSection label={t("sidebar.company")}>
           <SidebarNavItem to="/org" label="Org" icon={Network} />
           <SidebarNavItem to="/skills" label="Skills" icon={Boxes} />
-          <SidebarNavItem to="/costs" label="Costs" icon={DollarSign} />
-          <SidebarNavItem to="/activity" label="Activity" icon={History} />
-          <SidebarNavItem to="/company/settings" label="Settings" icon={Settings} />
+          <SidebarNavItem to="/costs" label={t("sidebar.costs")} icon={DollarSign} />
+          <SidebarNavItem to="/activity" label={t("sidebar.activity")} icon={History} />
+          <SidebarNavItem to="/company/settings" label={t("sidebar.settings")} icon={Settings} />
         </SidebarSection>
 
         <PluginSlotOutlet

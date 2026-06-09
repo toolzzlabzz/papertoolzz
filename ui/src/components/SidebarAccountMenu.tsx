@@ -19,7 +19,7 @@ import { useTheme } from "../context/ThemeContext";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "../lib/utils";
-import { i18n, supportedLocales } from "../i18n";
+import { i18n, supportedLocales, t } from "../i18n";
 
 const PROFILE_SETTINGS_PATH = "/company/settings/instance/profile";
 const DOCS_URL = "https://docs.paperclip.ing/";
@@ -193,30 +193,30 @@ export function SidebarAccountMenu({
 
             <div className="mt-4 space-y-1">
               <MenuAction
-                label="View profile"
-                description="Open your activity, task, and usage ledger."
+                label={t("account.viewProfile")}
+                description={t("account.viewProfileDesc")}
                 icon={UserRound}
                 href={profileHref}
                 onClick={closeNavigationChrome}
               />
               <MenuAction
-                label="Edit profile"
-                description="Update your display name and avatar."
+                label={t("account.editProfile")}
+                description={t("account.editProfileDesc")}
                 icon={UserRoundPen}
                 href={PROFILE_SETTINGS_PATH}
                 onClick={closeNavigationChrome}
               />
               <MenuAction
-                label="Documentation"
-                description="Open Paperclip docs in a new tab."
+                label={t("account.documentation")}
+                description={t("account.documentationDesc")}
                 icon={BookOpen}
                 href={DOCS_URL}
                 external
                 onClick={() => setOpen(false)}
               />
               <MenuAction
-                label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-                description="Toggle the app appearance."
+                label={theme === "dark" ? t("account.switchToLight") : t("account.switchToDark")}
+                description={t("account.toggleThemeDesc")}
                 icon={theme === "dark" ? Sun : Moon}
                 onClick={() => {
                   toggleTheme();
@@ -226,7 +226,7 @@ export function SidebarAccountMenu({
               <div className="px-3 py-2">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1.5">
                   <Globe className="size-3.5" />
-                  Language
+                  {t("account.language")}
                 </div>
                 <select
                   className="w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-ring"
@@ -253,10 +253,10 @@ export function SidebarAccountMenu({
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block text-sm font-medium text-foreground">
-                      {signOutMutation.isPending ? "Signing out..." : "Sign out"}
+                      {signOutMutation.isPending ? t("account.signingOut") : t("account.signOut")}
                     </span>
                     <span className="block text-xs text-muted-foreground">
-                      End this browser session.
+                      {t("account.signOutDesc")}
                     </span>
                   </span>
                 </button>
