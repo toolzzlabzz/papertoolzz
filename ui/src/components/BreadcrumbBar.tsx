@@ -1,5 +1,6 @@
 import { Link } from "@/lib/router";
 import { Menu } from "lucide-react";
+import { t } from "@/i18n";
 import { useBreadcrumbs } from "../context/BreadcrumbContext";
 import { useSidebar } from "../context/SidebarContext";
 import { useCompany } from "../context/CompanyContext";
@@ -67,7 +68,7 @@ export function BreadcrumbBar() {
       size="icon-sm"
       className="mr-2 shrink-0"
       onClick={toggleSidebar}
-      aria-label="Open sidebar"
+      aria-label={t("nav.openSidebar")}
     >
       <Menu className="h-5 w-5" />
     </Button>

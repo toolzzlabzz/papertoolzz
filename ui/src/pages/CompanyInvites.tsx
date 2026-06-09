@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useInfiniteQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Check, Copy, ExternalLink, MailPlus } from "lucide-react";
+import { t } from "@/i18n";
 import { accessApi } from "@/api/access";
 import { ApiError } from "@/api/client";
 import { Button } from "@/components/ui/button";
@@ -105,7 +106,7 @@ export function CompanyInvites() {
 
     afterFallback?.();
     pushToast({
-      title: "Clipboard unavailable",
+      title: t("invites.clipboardUnavailable"),
       body: unavailableBody,
       tone: "warn",
     });
@@ -113,14 +114,14 @@ export function CompanyInvites() {
   }
 
   async function copyInviteUrl(url: string) {
-    return copyText(url, "The invite URL is selected. Copy it manually from the field.", selectLatestInviteUrl);
+    return copyText(url, t("invites.clipboardUnavailableBody"), selectLatestInviteUrl);
   }
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: selectedCompany?.name ?? "Company", href: "/dashboard" },
-      { label: "Settings", href: "/company/settings" },
-      { label: "Invites" },
+      { label: selectedCompany?.name ?? t("sidebar.company"), href: "/dashboard" },
+      { label: t("sidebar.settings"), href: "/company/settings" },
+      { label: t("sidebar.invites") },
     ]);
   }, [selectedCompany?.name, setBreadcrumbs]);
 
@@ -154,18 +155,18 @@ export function CompanyInvites() {
     onSuccess: async (invite) => {
       setLatestInviteUrl(invite.inviteUrl);
       setLatestInviteCopied(false);
-      const copied = await copyText(invite.inviteUrl, "Copy the invite URL manually from the field below.");
+      const copied = await copyText(invite.inviteUrl, t("invites.copyManually"));
 
       await queryClient.invalidateQueries({ queryKey: inviteHistoryQueryKey });
       pushToast({
-        title: "Invite created",
-        body: copied ? "Invite ready below and copied to clipboard." : "Invite ready below.",
+        title: t("invites.inviteCreated"),
+        body: copied ? t("invites.readyAndCopied") : t("invites.readyBelow"),
         tone: "success",
       });
     },
     onError: (error) => {
       pushToast({
-        title: "Failed to create invite",
+        title: t("invites.failedToCreate"),
         body: error instanceof Error ? error.message : "Unknown error",
         tone: "error",
       });
@@ -176,11 +177,11 @@ export function CompanyInvites() {
     mutationFn: (inviteId: string) => accessApi.revokeInvite(inviteId),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: inviteHistoryQueryKey });
-      pushToast({ title: "Invite revoked", tone: "success" });
+      pushToast({ title: t("invites.inviteRevoked"), tone: "success" });
     },
     onError: (error) => {
       pushToast({
-        title: "Failed to revoke invite",
+        title: t("invites.failedToRevoke"),
         body: error instanceof Error ? error.message : "Unknown error",
         tone: "error",
       });
@@ -188,11 +189,11 @@ export function CompanyInvites() {
   });
 
   if (!selectedCompanyId) {
-    return <div className="text-sm text-muted-foreground">Select a company to manage invites.</div>;
+    return <div className="text-sm text-muted-foreground">{t("invites.selectCompany")}</div>;
   }
 
   if (invitesQuery.isLoading) {
-    return <div className="text-sm text-muted-foreground">Loading invites…</div>;
+    return <div className="text-sm text-muted-foreground">{t("invites.loadingInvites")}</div>;
   }
 
   if (invitesQuery.error) {
@@ -210,23 +211,23 @@ export function CompanyInvites() {
       <div className="space-y-3">
         <div className="flex items-center gap-2">
           <MailPlus className="h-5 w-5 text-muted-foreground" />
-          <h1 className="text-lg font-semibold">Company Invites</h1>
+          <h1 className="text-lg font-semibold">{t("invites.title")}</h1>
         </div>
         <p className="max-w-3xl text-sm text-muted-foreground">
-          Invite people to request access to this company. New invite links are copied to your clipboard when they are generated.
+          {t("invites.description")}
         </p>
       </div>
 
       <section className="space-y-4 rounded-xl border border-border p-5">
         <div className="space-y-1">
-          <h2 className="text-sm font-semibold">Invite a person</h2>
+          <h2 className="text-sm font-semibold">{t("invites.invitePerson")}</h2>
           <p className="text-sm text-muted-foreground">
-            Generate a human invite link and choose the default access it should request.
+            {t("invites.invitePersonDesc")}
           </p>
         </div>
 
         <fieldset className="space-y-3">
-          <legend className="text-sm font-medium">Choose a role</legend>
+          <legend className="text-sm font-medium">{t("invites.chooseRole")}</legend>
           <div className="rounded-xl border border-border">
             {inviteRoleOptions.map((option, index) => {
               const checked = humanRole === option.value;
@@ -248,7 +249,7 @@ export function CompanyInvites() {
                       <span className="text-sm font-medium">{option.label}</span>
                       {option.value === "operator" ? (
                         <span className="rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground">
-                          Default
+                          {t("invites.default")}
                         </span>
                       ) : null}
                     </span>
@@ -262,21 +263,21 @@ export function CompanyInvites() {
         </fieldset>
 
         <div className="rounded-lg border border-border px-4 py-3 text-sm text-muted-foreground">
-          Each invite link is single-use. Human invitees get the selected role immediately after sign-in; agent invites still create a join request for approval.
+          {t("invites.inviteHint")}
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
           <Button onClick={() => createInviteMutation.mutate()} disabled={createInviteMutation.isPending}>
-            {createInviteMutation.isPending ? "Creating…" : "Create invite"}
+            {createInviteMutation.isPending ? t("invites.creating") : t("invites.createInvite")}
           </Button>
-          <span className="text-sm text-muted-foreground">Invite history below keeps the audit trail.</span>
+          <span className="text-sm text-muted-foreground">{t("invites.auditTrail")}</span>
         </div>
 
         {latestInviteUrl ? (
           <div className="space-y-3 rounded-lg border border-border px-4 py-4">
             <div className="space-y-1">
               <div className="flex items-center justify-between gap-3">
-                <div className="text-sm font-medium">Latest invite link</div>
+                <div className="text-sm font-medium">{t("invites.latestInviteLink")}</div>
                 {latestInviteCopied ? (
                   <div className="inline-flex items-center gap-1 text-xs font-medium text-foreground">
                     <Check className="h-3.5 w-3.5" />
@@ -285,7 +286,7 @@ export function CompanyInvites() {
                 ) : null}
               </div>
               <div className="text-sm text-muted-foreground">
-                This URL includes the current Paperclip domain returned by the server.
+                {t("invites.latestInviteUrlDesc")}
               </div>
             </div>
             <label className="block space-y-1">
@@ -311,12 +312,12 @@ export function CompanyInvites() {
                 }}
               >
                 <Copy className="h-4 w-4" />
-                Copy link
+                {t("invites.copyLink")}
               </Button>
               <Button size="sm" variant="outline" asChild>
                 <a href={latestInviteUrl} target="_blank" rel="noreferrer">
                   <ExternalLink className="h-4 w-4" />
-                  Open invite
+                  {t("invites.openInvite")}
                 </a>
               </Button>
             </div>
@@ -327,32 +328,32 @@ export function CompanyInvites() {
       <section className="rounded-xl border border-border">
         <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
           <div className="space-y-1">
-            <h2 className="text-sm font-semibold">Invite history</h2>
+            <h2 className="text-sm font-semibold">{t("invites.inviteHistory")}</h2>
             <p className="text-sm text-muted-foreground">
-              Review invite status, audience, inviter, and any linked join request.
+              {t("invites.inviteHistoryDesc")}
             </p>
           </div>
           <Link to="/inbox/requests" className="text-sm underline underline-offset-4">
-            Open join request queue
+            {t("invites.openJoinRequestQueue")}
           </Link>
         </div>
 
         {inviteHistory.length === 0 ? (
-          <div className="border-t border-border px-5 py-8 text-sm text-muted-foreground">
-            No invites have been created for this company yet.
-          </div>
+            <div className="border-t border-border px-5 py-8 text-sm text-muted-foreground">
+              {t("invites.noInvites")}
+            </div>
         ) : (
           <div className="border-t border-border">
             <div className="overflow-x-auto">
               <table className="min-w-full text-left text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="px-5 py-3 font-medium text-muted-foreground">State</th>
-                    <th className="px-5 py-3 font-medium text-muted-foreground">For</th>
-                    <th className="px-5 py-3 font-medium text-muted-foreground">Invited by</th>
-                    <th className="px-5 py-3 font-medium text-muted-foreground">Created</th>
-                    <th className="px-5 py-3 font-medium text-muted-foreground">Join request</th>
-                    <th className="px-5 py-3 text-right font-medium text-muted-foreground">Action</th>
+                    <th className="px-5 py-3 font-medium text-muted-foreground">{t("invites.state")}</th>
+                    <th className="px-5 py-3 font-medium text-muted-foreground">{t("invites.for")}</th>
+                    <th className="px-5 py-3 font-medium text-muted-foreground">{t("invites.invitedBy")}</th>
+                    <th className="px-5 py-3 font-medium text-muted-foreground">{t("invites.created")}</th>
+                    <th className="px-5 py-3 font-medium text-muted-foreground">{t("invites.joinRequest")}</th>
+                    <th className="px-5 py-3 text-right font-medium text-muted-foreground">{t("invites.action")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -365,7 +366,7 @@ export function CompanyInvites() {
                       </td>
                       <td className="px-5 py-3 align-top">{formatInviteAudience(invite)}</td>
                       <td className="px-5 py-3 align-top">
-                        <div>{invite.invitedByUser?.name || invite.invitedByUser?.email || "Unknown inviter"}</div>
+                        <div>{invite.invitedByUser?.name || invite.invitedByUser?.email || t("invites.unknownInviter")}</div>
                         {invite.invitedByUser?.email && invite.invitedByUser.name ? (
                           <div className="text-xs text-muted-foreground">{invite.invitedByUser.email}</div>
                         ) : null}
@@ -376,7 +377,7 @@ export function CompanyInvites() {
                       <td className="px-5 py-3 align-top">
                         {invite.relatedJoinRequestId ? (
                           <Link to="/inbox/requests" className="underline underline-offset-4">
-                            Review request
+                            {t("invites.reviewRequest")}
                           </Link>
                         ) : (
                           <span className="text-muted-foreground">—</span>
@@ -390,10 +391,10 @@ export function CompanyInvites() {
                             onClick={() => revokeMutation.mutate(invite.id)}
                             disabled={revokeMutation.isPending}
                           >
-                            Revoke
+                            {t("invites.revoke")}
                           </Button>
                         ) : (
-                          <span className="text-xs text-muted-foreground">Inactive</span>
+                          <span className="text-xs text-muted-foreground">{t("invites.inactive")}</span>
                         )}
                       </td>
                     </tr>
@@ -409,7 +410,7 @@ export function CompanyInvites() {
                   onClick={() => invitesQuery.fetchNextPage()}
                   disabled={invitesQuery.isFetchingNextPage}
                 >
-                  {invitesQuery.isFetchingNextPage ? "Loading more…" : "View more"}
+                  {invitesQuery.isFetchingNextPage ? t("invites.loadingMore") : t("invites.viewMore")}
                 </Button>
               </div>
             ) : null}

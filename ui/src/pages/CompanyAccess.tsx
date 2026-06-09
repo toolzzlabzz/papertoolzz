@@ -10,6 +10,7 @@ import { agentsApi } from "@/api/agents";
 import { ApiError } from "@/api/client";
 import { issuesApi } from "@/api/issues";
 import { Button } from "@/components/ui/button";
+import { t } from "@/i18n";
 import {
   Dialog,
   DialogContent,
@@ -44,7 +45,7 @@ export function CompanyAccess() {
     setBreadcrumbs([
       { label: selectedCompany?.name ?? "Company", href: "/dashboard" },
       { label: "Settings", href: "/company/settings" },
-      { label: "Members" },
+      { label: t("sidebar.members") },
     ]);
   }, [selectedCompany?.name, setBreadcrumbs]);
 
@@ -238,7 +239,7 @@ export function CompanyAccess() {
       <div className="space-y-3">
         <div className="flex items-center gap-2">
           <ShieldCheck className="h-5 w-5 text-muted-foreground" />
-          <h1 className="text-lg font-semibold">Company Members</h1>
+          <h1 className="text-lg font-semibold">{t("access.companyAccess")}</h1>
         </div>
         <p className="max-w-3xl text-sm text-muted-foreground">
           Manage the people who can work in {selectedCompany?.name}. Members can collaborate across the company by default.

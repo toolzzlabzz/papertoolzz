@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@/lib/router";
 import { useDialog } from "../context/DialogContext";
 import { useCompany } from "../context/CompanyContext";
+import { t } from "@/i18n";
 import { accessApi } from "../api/access";
 import { agentsApi } from "../api/agents";
 import { adaptersApi } from "../api/adapters";
@@ -232,7 +233,7 @@ export function NewAgentDialog() {
       >
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-2.5 border-b border-border">
-          <span className="text-sm text-muted-foreground">Add a new agent</span>
+          <span className="text-sm text-muted-foreground">{t("agents.addNewAgent")}</span>
           <Button
             variant="ghost"
             size="icon-xs"
@@ -262,18 +263,18 @@ export function NewAgentDialog() {
 
               <Button className="w-full" size="lg" onClick={handleAskCeo}>
                 <Bot className="h-4 w-4 mr-2" />
-                Ask the CEO to create a new agent
+                {t("agents.askCeo")}
               </Button>
 
               <div className="grid gap-2">
                 <Button variant="outline" className="w-full" onClick={handleAdvancedConfig}>
                   <Settings2 className="h-4 w-4 mr-2" />
-                  Configure a runtime manually
+                  {t("agents.configureRuntime")}
                 </Button>
                 <div className="space-y-1">
                   <Button variant="outline" className="w-full" onClick={handleInviteExternalAgent}>
                     <MailPlus className="h-4 w-4 mr-2" />
-                    Invite an external agent
+                    {t("agents.inviteExternal")}
                   </Button>
                   <p className="text-xs text-muted-foreground text-center">
                     (OpenClaw, Hermes, or any agent that can call the invite API.)

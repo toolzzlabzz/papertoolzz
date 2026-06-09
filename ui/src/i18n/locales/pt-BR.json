@@ -183,7 +183,12 @@
     "noAgents": "Nenhum agente configurado. Crie seu primeiro agente para começar a atribuir trabalho.",
     "noFilterMatch": "Nenhum agente corresponde ao filtro atual.",
     "noHierarchy": "Nenhuma hierarquia definida.",
-    "runHeartbeat": "Executar heartbeat"
+    "runHeartbeat": "Executar heartbeat",
+    "agentName": "Nome do agente",
+    "addNewAgent": "Adicionar novo agente",
+    "askCeo": "Pedir ao CEO para criar um novo agente",
+    "configureRuntime": "Configurar um runtime manualmente",
+    "inviteExternal": "Convidar um agente externo"
   },
   "projects": {
     "selectCompany": "Selecione uma empresa para ver os projetos.",
@@ -197,13 +202,27 @@
     "addProject": "Adicionar projeto",
     "noProjectsYet": "Nenhum projeto ainda. Crie seu primeiro projeto para organizar o trabalho.",
     "myProjects": "Meus projetos",
-    "otherProjects": "Outros projetos"
+    "otherProjects": "Outros projetos",
+    "newProject": "Novo projeto",
+    "projectName": "Nome do projeto",
+    "repoUrl": "URL do repositório",
+    "localFolder": "Pasta local",
+    "creating": "Criando...",
+    "createProject": "Criar projeto",
+    "failedToCreate": "Falha ao criar projeto."
   },
   "goals": {
     "selectCompany": "Selecione uma empresa para ver os objetivos.",
     "noGoalsYet": "Nenhum objetivo ainda. Defina seu primeiro objetivo estratégico para guiar os agentes.",
     "addGoal": "Adicionar objetivo",
-    "newGoal": "Novo objetivo"
+    "newGoal": "Novo objetivo",
+    "goalName": "Título do objetivo",
+    "newSubGoal": "Novo sub-objetivo",
+    "parentGoal": "Objetivo pai",
+    "noParent": "Sem pai",
+    "creating": "Criando...",
+    "createGoal": "Criar objetivo",
+    "createSubGoal": "Criar sub-objetivo"
   },
   "artifacts": {
     "selectCompany": "Selecione uma empresa para ver os artefatos.",
@@ -371,5 +390,67 @@
     "filterByType": "Filtrar por tipo",
     "allTypes": "Todos os tipos",
     "noActivityYet": "Nenhuma atividade ainda."
+  },
+  "issues": {
+    "newTask": "Nova tarefa",
+    "newSubTask": "Nova sub-tarefa",
+    "taskTitle": "Título da tarefa",
+    "describeTask": "Descrever a tarefa",
+    "assignTo": "Atribuir para",
+    "noAssignee": "Sem responsável",
+    "searchAssignees": "Buscar responsáveis...",
+    "noAssigneesFound": "Nenhum responsável encontrado.",
+    "noProject": "Sem projeto",
+    "searchProjects": "Buscar projetos...",
+    "noProjectsFound": "Nenhum projeto encontrado.",
+    "reviewer": "Revisor",
+    "approver": "Aprovador",
+    "noReviewer": "Sem revisor",
+    "noApprover": "Sem aprovador",
+    "searchReviewers": "Buscar revisores...",
+    "searchApprovers": "Buscar aprovadores...",
+    "noReviewersFound": "Nenhum revisor encontrado.",
+    "noApproversFound": "Nenhum aprovador encontrado.",
+    "subTaskOf": "Sub-tarefa de",
+    "priority": "Prioridade",
+    "dueDate": "Prazo",
+    "startDate": "Início",
+    "creating": "Criando...",
+    "creatingIssue": "Criando tarefa...",
+    "createTask": "Criar Tarefa",
+    "createSubTask": "Criar Sub-Tarefa",
+    "discardDraft": "Descartar Rascunho",
+    "upload": "Upload",
+    "executionWorkspace": "Workspace de execução",
+    "chooseExistingWorkspace": "Escolher workspace existente",
+    "modelLane": "Perfil do modelo",
+    "model": "Modelo",
+    "thinkingEffort": "Esforço de raciocínio",
+    "enableChrome": "Habilitar Chrome (--chrome)",
+    "defaultModel": "Modelo padrão",
+    "noModelsFound": "Nenhum modelo encontrado.",
+    "searchModels": "Buscar modelos...",
+    "addReviewerOrApprover": "Adicionar revisor ou aprovador"
+  },
+  "companies": {
+    "searchCompanies": "Buscar empresas...",
+    "noCompaniesFound": "Nenhuma empresa encontrada.",
+    "noCompanies": "Nenhuma empresa",
+    "manageCompanies": "Gerenciar Empresas",
+    "selectCompany": "Selecionar empresa"
+  },
+  "access": {
+    "companyAccess": "Acesso da Empresa"
+  },
+  "profile": {
+    "profile": "Perfil"
+  },
+  "nav": {
+    "home": "Início",
+    "tasks": "Tarefas",
+    "create": "Criar",
+    "agents": "Agentes",
+    "inbox": "Caixa de entrada",
+    "openSidebar": "Abrir menu"
   }
 }

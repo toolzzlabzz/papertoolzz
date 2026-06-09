@@ -18,6 +18,7 @@ import type {
 } from "@paperclipai/shared";
 import { companySkillsApi } from "../api/companySkills";
 import { agentsApi } from "../api/agents";
+import { t } from "@/i18n";
 import { useCompany } from "../context/CompanyContext";
 import { useBreadcrumbs } from "../context/BreadcrumbContext";
 import { useToastActions } from "../context/ToastContext";
@@ -1428,7 +1429,7 @@ function SkillPane({
     return (
       <EmptyState
         icon={Boxes}
-        message="Select a skill to inspect its files."
+        message={t("skills.selectSkill")}
       />
     );
   }
@@ -1467,7 +1468,7 @@ function SkillPane({
               title={removeDisabledReason ?? undefined}
             >
               <Trash2 className="mr-1.5 h-3.5 w-3.5" />
-              {deletePending ? "Removing..." : "Remove"}
+              {deletePending ? t("skills.removing") : t("skills.remove")}
             </Button>
             {detail.editable ? (
               <button
@@ -1475,7 +1476,7 @@ function SkillPane({
                 onClick={() => setEditMode(!editMode)}
               >
                 <Pencil className="h-3.5 w-3.5" />
-                {editMode ? "Stop editing" : "Edit"}
+                {editMode ? t("skills.stopEditing") : t("common.edit")}
               </button>
             ) : (
               <div className="text-sm text-muted-foreground">{detail.editableReason}</div>
@@ -1486,7 +1487,7 @@ function SkillPane({
         <div className="mt-4 space-y-3 border-t border-border pt-4 text-sm">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <div className="flex min-w-0 items-center gap-2">
-              <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Source</span>
+              <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{t("skills.source")}</span>
               <span className="flex min-w-0 items-center gap-2">
                 <SourceIcon className="h-3.5 w-3.5 text-muted-foreground" />
                 {detail.sourcePath && displaySourcePath ? (
@@ -1514,8 +1515,8 @@ function SkillPane({
             </div>
             {detail.sourceType === "github" && (
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Pin</span>
-                <span className="font-mono text-xs">{currentPin ?? "untracked"}</span>
+                <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{t("skills.pin")}</span>
+                <span className="font-mono text-xs">{currentPin ?? t("skills.untracked")}</span>
                 {updateStatus?.trackingRef && (
                   <span className="text-xs text-muted-foreground">tracking {updateStatus.trackingRef}</span>
                 )}
@@ -1547,16 +1548,16 @@ function SkillPane({
               </div>
             )}
             <div className="flex items-center gap-2">
-              <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Key</span>
+                <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{t("skills.keyLabel")}</span>
               <span className="font-mono text-xs">{detail.key}</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Mode</span>
-              <span>{detail.editable ? "Editable" : "Read only"}</span>
+              <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{t("skills.mode")}</span>
+              <span>{detail.editable ? t("skills.editable") : t("skills.readOnly")}</span>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Trust</span>
+                  <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{t("skills.trust")}</span>
             <TrustChip level={detail.trustLevel} />
             <CompatChip compatibility={detail.compatibility} />
             {readonlyMetadataValue(detail.metadata, "userModifiedAt") ? (
@@ -1564,10 +1565,10 @@ function SkillPane({
                 <TooltipTrigger asChild>
                   <span className="inline-flex items-center gap-1 rounded-full border border-violet-500/40 bg-violet-500/10 px-2 py-0.5 text-[11px] text-violet-200">
                     <Pencil className="h-3 w-3" aria-hidden="true" />
-                    Locally modified
+                    {t("skills.locallyModified")}
                   </span>
                 </TooltipTrigger>
-                <TooltipContent>You have edited this skill after installing. Updates from the catalog will overwrite your changes.</TooltipContent>
+                <TooltipContent>{t("skills.locallyModifiedTooltip")}</TooltipContent>
               </Tooltip>
             ) : null}
             {(() => {
@@ -1578,7 +1579,7 @@ function SkillPane({
           </div>
           <div className="flex flex-wrap items-start gap-x-3 gap-y-2">
             <div className="flex items-center gap-2">
-              <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Used by</span>
+              <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{t("skills.usedBy")}</span>
               <AttachAgentsPopover
                 open={attachPopoverOpen}
                 onOpenChange={setAttachPopoverOpen}
@@ -1589,7 +1590,7 @@ function SkillPane({
               />
             </div>
             {usedBy.length === 0 ? (
-              <span className="text-muted-foreground">No agents attached</span>
+              <span className="text-muted-foreground">{t("skills.noAgentsAttached")}</span>
             ) : (
               <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
                 {usedBy.map((agent) => (
@@ -1621,7 +1622,7 @@ function SkillPane({
                 >
                   <span className="flex items-center gap-1.5">
                     <Eye className="h-3.5 w-3.5" />
-                    View
+                    {t("skills.view")}
                   </span>
                 </button>
                 <button
@@ -1630,7 +1631,7 @@ function SkillPane({
                 >
                   <span className="flex items-center gap-1.5">
                     <Code2 className="h-3.5 w-3.5" />
-                    Code
+                    {t("skills.code")}
                   </span>
                 </button>
               </div>
@@ -1638,11 +1639,11 @@ function SkillPane({
             {editMode && file?.editable && (
               <>
                 <Button variant="ghost" size="sm" onClick={() => setEditMode(false)} disabled={savePending}>
-                  Cancel
+                  {t("common.cancel")}
                 </Button>
                 <Button size="sm" onClick={onSave} disabled={savePending}>
                   <Save className="mr-1.5 h-3.5 w-3.5" />
-                  {savePending ? "Saving..." : "Save"}
+                  {savePending ? t("skills.saving") : t("skills.save")}
                 </Button>
               </>
             )}
@@ -1763,8 +1764,8 @@ export function CompanySkills() {
 
   useEffect(() => {
     setBreadcrumbs([
-      { label: "Skills", href: "/skills" },
-      ...(routeSkillId ? [{ label: "Detail" }] : []),
+      { label: t("agentDetail.skills"), href: "/skills" },
+      ...(routeSkillId ? [{ label: t("common.detail") }] : []),
     ]);
   }, [routeSkillId, setBreadcrumbs]);
 
@@ -2230,7 +2231,7 @@ export function CompanySkills() {
   });
 
   if (!selectedCompanyId) {
-    return <EmptyState icon={Boxes} message="Select a company to manage skills." />;
+    return <EmptyState icon={Boxes} message={t("skills.selectCompany")} />;
   }
 
   function handleAddSkillSource() {
@@ -2247,7 +2248,7 @@ export function CompanySkills() {
       <Dialog open={deleteOpen} onOpenChange={closeDeleteDialog}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Remove skill</DialogTitle>
+            <DialogTitle>{t("skills.removeSkill")}</DialogTitle>
             <DialogDescription>
               Remove this skill from the company library. If any agents still use it, removal will be blocked until it is detached.
             </DialogDescription>
@@ -2361,11 +2362,11 @@ export function CompanySkills() {
           <Tabs value={activeView} onValueChange={(value) => setViewParam(value === "catalog" ? "catalog" : "installed")}>
             <TabsList variant="line" className="p-0">
               <TabsTrigger value="installed" className="px-3">
-                <span>Installed</span>
+                <span>{t("skills.installed")}</span>
                 <span className="ml-1.5 text-[11px] text-muted-foreground">{installedSkills.length}</span>
               </TabsTrigger>
               <TabsTrigger value="catalog" className="px-3">
-                <span>Catalog</span>
+                <span>{t("skills.catalog")}</span>
                 <span className="ml-1.5 text-[11px] text-muted-foreground">{catalogListQuery.data?.length ?? 0}</span>
               </TabsTrigger>
             </TabsList>
@@ -2377,7 +2378,7 @@ export function CompanySkills() {
                 size="icon-sm"
                 onClick={() => scanProjects.mutate()}
                 disabled={scanProjects.isPending}
-                title="Scan project workspaces for skills"
+                title={t("skills.scanProjects")}
               >
                 <RefreshCw className={cn("h-4 w-4", scanProjects.isPending && "animate-spin")} />
               </Button>
@@ -2386,14 +2387,14 @@ export function CompanySkills() {
               <DropdownMenuTrigger asChild>
                 <Button size="sm" variant="default">
                   <Plus className="mr-1 h-3.5 w-3.5" />
-                  Add skill
+                  {t("skills.addSkill")}
                   <ChevronDown className="ml-1 h-3.5 w-3.5" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onSelect={() => setViewParam("catalog")}>
                   <Boxes className="mr-2 h-4 w-4" />
-                  Browse catalog
+                  {t("skills.browseCatalog")}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onSelect={() => {
@@ -2402,7 +2403,7 @@ export function CompanySkills() {
                   }}
                 >
                   <Globe className="mr-2 h-4 w-4" />
-                  Import from URL or path
+                  {t("skills.importFromUrl")}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onSelect={() => {
@@ -2411,7 +2412,7 @@ export function CompanySkills() {
                   }}
                 >
                   <Pencil className="mr-2 h-4 w-4" />
-                  Create blank skill
+                  {t("skills.createBlank")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -2427,7 +2428,7 @@ export function CompanySkills() {
                   <input
                     value={skillFilter}
                     onChange={(event) => setSkillFilter(event.target.value)}
-                    placeholder="Filter skills"
+                    placeholder={t("skills.placeholder")}
                     className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
                   />
                   <SourceFilterMenu counts={sourceCounts} value={sourceFilter} onChange={setSourceFilter} />
@@ -2437,7 +2438,7 @@ export function CompanySkills() {
                   <input
                     value={source}
                     onChange={(event) => setSource(event.target.value)}
-                    placeholder="Paste path, GitHub URL, or skills.sh command"
+                    placeholder={t("skills.importPlaceholder")}
                     className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
                   />
                   <Button
@@ -2446,7 +2447,7 @@ export function CompanySkills() {
                     onClick={handleAddSkillSource}
                     disabled={importSkill.isPending}
                   >
-                    {importSkill.isPending ? <RefreshCw className="h-4 w-4 animate-spin" /> : "Add"}
+                    {importSkill.isPending ? <RefreshCw className="h-4 w-4 animate-spin" /> : t("skills.add")}
                   </Button>
                 </div>
                 {scanStatusMessage && (
@@ -2470,14 +2471,14 @@ export function CompanySkills() {
                 <div className="px-4 py-8">
                   <EmptyState
                     icon={Boxes}
-                    message="No skills installed yet."
+                    message={t("skills.noSkillsInstalled")}
                   />
                   <div className="mt-3 flex flex-col items-center gap-2">
                     <Button size="sm" onClick={() => setViewParam("catalog")}>
-                      <Boxes className="mr-1.5 h-3.5 w-3.5" /> Browse catalog
+                      <Boxes className="mr-1.5 h-3.5 w-3.5" /> {t("skills.browseCatalog")}
                     </Button>
                     <Button size="sm" variant="ghost" onClick={() => setEmptySourceHelpOpen(true)}>
-                      Import from URL
+                      {t("skills.importFromUrlBtn")}
                     </Button>
                   </div>
                 </div>
@@ -2549,7 +2550,7 @@ export function CompanySkills() {
                   <input
                     value={catalogFilter}
                     onChange={(event) => setCatalogFilter(event.target.value)}
-                    placeholder="Search catalog"
+                    placeholder={t("skills.searchCatalog")}
                     className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
                   />
                   <CatalogFilterMenu
